@@ -1,5 +1,6 @@
 # instalaciones
 alertifyjs
+npm i alertifyjs --save
 
 # bootstrap
 npm i bootstrap --save
