@@ -22,11 +22,11 @@ export class CrudService {
 
   constructor(private _httpClient: HttpClient) {}
 
-  getProducts() {
+  getProducts() :Observable<any> {
     return this._httpClient.get(this.REST_API, { headers: this.httpHeaders });
   }
 
-  getProduct(id: any) {
+  getProduct(id: any) :Observable<any> {
     return this._httpClient
       .get(`${this.REST_API}/${id}`, { headers: this.httpHeaders })
       .pipe(
@@ -36,19 +36,19 @@ export class CrudService {
       );
   }
 
-  createProduct(data: Product){
+  createProduct(data: Product) :Observable<any> {
     return this._httpClient
       .post(this.REST_API, data, { headers: this.httpHeaders })
       .pipe(catchError(this.handleError));
   }
 
-  updateProduct(id: any, data: Product) {
+  updateProduct(id: any, data: Product) :Observable<any> {
     return this._httpClient
       .put(`${this.REST_API}/${id}`, data, { headers: this.httpHeaders })
       .pipe(catchError(this.handleError));
   }
 
-  deleteProduct(id: any) {
+  deleteProduct(id: any) :Observable<any> {
     return this._httpClient
       .delete(`${this.REST_API}/${id}`, { headers: this.httpHeaders })
       .pipe(catchError(this.handleError));
