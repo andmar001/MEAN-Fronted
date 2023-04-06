@@ -28,7 +28,10 @@ export class ShowComponent implements OnInit {
   }
 
   delete(id:any, index:any){
-    console.log(id);
+    this._crudService.deleteProduct(id)
+      .subscribe(() =>{
+        this.products.splice(index, 1);   // Elimina el producto de la vista
+      })
   }
 
 }

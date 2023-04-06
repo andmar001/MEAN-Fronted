@@ -1,1 +1,12 @@
-<p>edit works!</p>
+<div class="card">
+  <div class="card-body">
+    <h3 class="card-title text-center">Edit Product</h3>
+    <app-generic-form
+      *ngIf="model"
+      [modelProduct]="model"
+      (submitValues)="onSubmit($event)"
+    >
+
+    </app-generic-form>
+  </div>
+</div>

@@ -27,7 +27,7 @@ export class CrudService {
   }
 
   getProduct(id: any) {
-    this._httpClient
+    return this._httpClient
       .get(`${this.REST_API}/${id}`, { headers: this.httpHeaders })
       .pipe(
         map((res: any) => {
@@ -36,20 +36,20 @@ export class CrudService {
       );
   }
 
-  createProduct(data: Product) {
-    this._httpClient
+  createProduct(data: Product){
+    return this._httpClient
       .post(this.REST_API, data, { headers: this.httpHeaders })
       .pipe(catchError(this.handleError));
   }
 
   updateProduct(id: any, data: Product) {
-    this._httpClient
+    return this._httpClient
       .put(`${this.REST_API}/${id}`, data, { headers: this.httpHeaders })
       .pipe(catchError(this.handleError));
   }
 
   deleteProduct(id: any) {
-    this._httpClient
+    return this._httpClient
       .delete(`${this.REST_API}/${id}`, { headers: this.httpHeaders })
       .pipe(catchError(this.handleError));
   }
