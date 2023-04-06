@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Product } from 'src/app/models/product.model';
+import { AlertifyService } from 'src/app/services/alertify.service';
 import { CrudService } from 'src/app/services/crud.service';
 
 @Component({
@@ -12,7 +13,8 @@ export class CreateComponent {
 
   constructor(
     private _router: Router,
-    private _crudService: CrudService
+    private _crudService: CrudService,
+    private _alertifyService: AlertifyService
   ) { }
 
 
@@ -20,10 +22,11 @@ export class CreateComponent {
     this._crudService.createProduct(product)
       .subscribe({
         next: (data) => {
+          this._alertifyService.success('Product successfully created');
           this._router.navigate(['/']);
         },
         error: (error) => {
-          console.error('There was an error!', error);
+          this._alertifyService.error( error );
         },
       })
 

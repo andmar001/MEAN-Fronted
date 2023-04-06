@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from 'src/app/models/product.model';
+import { AlertifyService } from 'src/app/services/alertify.service';
 import { CrudService } from 'src/app/services/crud.service';
 
 @Component({
@@ -15,6 +16,7 @@ export class EditComponent implements OnInit {
 
   constructor(
     private _crudService: CrudService,
+    private _alertifyService: AlertifyService,
     private _router: Router,
     private _activatedRoute: ActivatedRoute // to get the id from the url
   ) { }
@@ -38,10 +40,11 @@ export class EditComponent implements OnInit {
     this._crudService.updateProduct(this.id, product)
       .subscribe({
         next:() =>{
+          this._alertifyService.success('Product successfully updated');
           this._router.navigateByUrl('/');
         },
         error: (error) => {
-          console.error('There was an error!', error);
+          this._alertifyService.error( error );
         }
       })
   }
